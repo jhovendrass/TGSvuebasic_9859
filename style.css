@@ -1,0 +1,30 @@
+body {
+    background-color: white;
+}
+
+#container {
+    background-color: whitesmoke;
+    border: 5px solid yellowgreen;
+    height: 900px;
+    width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+#name {
+    background-color: whitesmoke;
+    border: 5px solid yellowgreen;
+    height: 25px;
+    width: 344px;
+    margin: auto;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    color:red;
+}
+
+p {
+    color:red;
+}

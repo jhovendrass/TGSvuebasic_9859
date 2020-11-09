@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.js"></script>
+</head>
+<body class="bg-info">
+    <div id="container">
+        <div>
+            <div v-for="(todo,index) in todos" :key="index">
+                <div>
+                    <div>
+                        <span class="float-right"><button  @click="hapus(index)">x</button></span>
+                        <span v-if="todo.prioritas == 'penting'" >{{ todo.prioritas }}</span>
+                        <span v-else-if="todo.prioritas == 'biasa'" >{{ todo.prioritas }}</span>
+                        <span v-else-if="todo.prioritas == 'tidak penting'" >{{ todo.prioritas }}</span>
+                        <br>
+                        <h4>{{ todo.judul }}</h4>
+                        <p>{{ todo.catatan }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div>
+                    <label for="judul"><strong>apa yang kamu kerjakan ?</strong> </label>
+                    <input type="text" id="judul" >
+                </div>
+                <div>
+                    <label for="prioritas"><strong>penting ga ?</strong> </label>
+                    <select name="prioritas" id="prioritas" >
+                        <option value="penting">penting</option>
+                        <option value="biasa">biasa</option>
+                        <option value="tidak penting">tidak penting</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="catatan"><strong>ada catatan penting ?</strong> </label>
+                    <textarea id="catatan"></textarea>
+                </div>
+                <div>
+                    <button @click="reset">Reset</button>
+                    <button @click="simpan">Simpan</button>
+                </div>
+            </div>
+        </div>    
+        <div id="name">
+            {{nama}}|{{npm}}|{{kelas}}
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#container",
+        data: {
+
+            nama: "Jhovendra Soemaschris",
+            npm: 180709859,
+            kelas: 'PAW Kelas B',
+            
+            todos:[
+                
+            ],
+        },
+        methods: {
+            reset(){
+                document.getElementById('catatan').value="";
+                document.getElementById('judul').value="";
+                document.getElementById('prioritas').value="";
+            },
+            hapus(index){
+                this.todos.splice(index,1);
+            },
+            simpan() {
+                let catatan = document.getElementById('catatan');
+                let judul = document.getElementById('judul');
+                let prioritas = document.getElementById('prioritas');
+                
+                let todo = {
+                    judul : judul.value,
+                    prioritas : prioritas.value,
+                    catatan : catatan.value,
+                }
+                document.getElementById('catatan').value="";
+                document.getElementById('judul').value="";
+                document.getElementById('prioritas').value="";
+                this.todos.push(todo);
+                console.log(this.todos);
+            },
+        },
+    });
+</script>
+</html>
